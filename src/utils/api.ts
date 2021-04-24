@@ -4,6 +4,15 @@ import { API_ROOT } from './config'
 // 登录
 export const login = (params = {}) => http.post('admin/user/login', { ...params })
 
+// * 获取社区名字
+export const getCommiteNameById = (params = {}) => http.post('admin/commite/getCommiteNameById', { ...params })
+// * 获取社区列表
+export const getCommiteInfo = (params = {}) => http.post('admin/commite/getCommiteInfo', { ...params })
+// * 社区操作
+export const addCommite = (params = {}) => http.post('admin/commite/addCommite', { ...params })
+export const deleteCommite = (params = {}) => http.post('admin/commite/deleteCommite', { ...params })
+export const editCommite = (params = {}) => http.post('admin/commite/editCommite', { ...params })
+
 // 获取文章列表
 export const getArts = (params = {}) => http.get('article/get', { params })
 // 添加文章

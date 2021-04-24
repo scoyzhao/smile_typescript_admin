@@ -3,7 +3,7 @@ import { Menu } from 'antd'
 import { menuConfig, menuType } from './menu-config'
 import { RouteProps, RouterProps } from 'react-router'
 const { SubMenu } = Menu
-interface menuProps{
+interface menuProps {
   collapsed: boolean
 }
 
@@ -33,9 +33,11 @@ export default function Munu(props: (menuProps & RouteProps & RouterProps)) {
       {
         menuConfig.map((menu: menuType) => {
           if (!menu.children) {
-            return <Menu.Item key={menu.key} icon={<menu.icon />} onClick={() => click(menu.path)}>
-              <span>{menu.title}</span>
-            </Menu.Item>
+            return (
+              <Menu.Item key={menu.key} icon={<menu.icon />} onClick={() => click(menu.path)}>
+                <span>{menu.title}</span>
+              </Menu.Item>
+            )
           } else {
             return (
               <SubMenu
@@ -50,8 +52,8 @@ export default function Munu(props: (menuProps & RouteProps & RouterProps)) {
               >
                 {
                   menu.children ?
-                  menu.children.map((item: menuType) => <Menu.Item key={item.key} onClick={() => click(item.path)}>{item.title}</Menu.Item>) :
-                  null
+                    menu.children.map((item: menuType) => <Menu.Item key={item.key} onClick={() => click(item.path)}>{item.title}</Menu.Item>) :
+                    null
                 }
               </SubMenu>
             )

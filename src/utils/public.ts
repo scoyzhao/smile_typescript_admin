@@ -1,9 +1,11 @@
 import { useLocation } from 'react-router-dom'
+import { IUser } from '../schems/user'
+
 export function useQuery() {
   return new URLSearchParams(useLocation().search)
 }
 
-export function getCommiteId() {
-  const { commiteId } = JSON.parse(localStorage.getItem('user') || '')
-  return commiteId
+export function getUserInfo(): IUser {
+  const user = JSON.parse(localStorage.getItem('user') || '{}')
+  return user
 }

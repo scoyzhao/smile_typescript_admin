@@ -20,7 +20,13 @@ export const menuConfig:menuType[] = [
     title: 'HOME',
     key: 'home',
     icon: HomeOutlined,
-    path: '/'
+    path: '/',
+  },
+  {
+    title: '社区管理',
+    key: 'commite-manage',
+    icon: HomeOutlined,
+    path: '/commite-manage',
   },
   {
     title: '文章管理',

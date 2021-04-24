@@ -1,13 +1,45 @@
-import React from 'react'
-import { Card, Col, Row } from 'antd';
+import React, { useState, useEffect } from 'react'
+import { Card, Col, Row, message } from 'antd';
 import './index.scss'
 import PageLayout from '../../common/components/page-layout'
-const Home = () => {
+import { getCommiteNameById } from '../../utils/api'
+import { getUserInfo } from '../../utils/public'
+
+const Home: React.FC = () => {
+  const [name, setName] = useState('')
+  const { commiteId, userName: admin } = getUserInfo()
+
+  useEffect(() => {
+    async function getCommiteName() {
+      const res: any = await getCommiteNameById({ id: commiteId })
+      const {
+        code,
+        message: msg,
+        data,
+      } = res.data
+      if (code !== 200) {
+        return message.error(msg)
+      }
+
+      setName(data)
+    }
+
+    getCommiteName()
+  })
+
+  return (
+    <PageLayout title={`你好！${name}社区的 ${admin}`}>
+      <Overview />
+    </PageLayout>
+  )
+}
+
+const Overview = () => {
   function getRadom(unit: number) {
     const limit = (Math.pow(10, unit) * Math.random()).toString();
     return parseInt(limit);
   }
-  return <PageLayout title='首页'>
+  return (
     <div className="site-card-wrapper">
       <Row gutter={16}>
         <Col span={6}>
@@ -31,9 +63,8 @@ const Home = () => {
           </Card>
         </Col>
       </Row>
-      
     </div>
-  </PageLayout>
+  )
 }
 
 

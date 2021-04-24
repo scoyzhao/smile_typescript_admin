@@ -17,6 +17,7 @@ const Projects = loadable(() => import('../pages/projects'))
 const Tags = loadable(() => import('../pages/tags'))
 const TagAdd = loadable(() => import('../pages/tag-add'))
 const Home = loadable(() => import('../pages/home'))
+const CommiteManage = loadable(() => import('../pages/commite-manage'))
 // export interface routeType {
 //   path: string,
 //   component: React.SFC
@@ -31,6 +32,10 @@ export const routes = [
     path: '/',
     component: Layout,
     children: [
+      {
+        path: '/commite-manage',
+        component: CommiteManage,
+      },
       {
         path: '/article',
         component: ArticleList
