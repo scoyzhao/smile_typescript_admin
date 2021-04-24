@@ -1,3 +1,1 @@
-export const IS_DEV:boolean = process.env.NODE_ENV !== 'production'
-
-export const API_ROOT:string = IS_DEV ? 'http://localhost:3009/api/' : 'https://blogapi.naice.me/api/'
+export const API_ROOT: string = 'http://120.27.247.30:9000/'

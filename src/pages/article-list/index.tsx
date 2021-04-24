@@ -55,16 +55,15 @@ const ArticleList = (props:RouteComponentProps) => {
     setPage({ current: pagination.current || 1, total: pagination.total || 0 })
     setLoad(load + 1)
   }
-  return <PageLayout title='文章列表'>
+  return <PageLayout title='社区信息'>
     <Table
       onChange={tableChange}
       components={components}
       columns={tableColumns as ColumnTypes}
       loading={loading}
-      dataSource={list}
+      dataSource={[]}
       bordered
       size="middle"
-      pagination={page}
       rowKey="_id" />
   </PageLayout>
 }

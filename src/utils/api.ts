@@ -2,7 +2,7 @@
 import {http, getAuthorization } from './http'
 import { API_ROOT } from './config'
 // 登录
-export const login = (params = {}) => http.post('user/login', { ...params })
+export const login = (params = {}) => http.post('admin/user/login', { ...params })
 
 // 获取文章列表
 export const getArts = (params = {}) => http.get('article/get', { params })

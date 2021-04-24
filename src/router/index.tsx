@@ -11,7 +11,6 @@ const ArticleComments = loadable(() => import('../pages/article-comments'))
 const ArticleDraft = loadable(() => import('../pages/article-draft'))
 const AddMessage = loadable(() => import('../pages/message-add'))
 const MessageList = loadable(() => import('../pages/messages-list'))
-const MusicAdd = loadable(() => import('../pages/music-add'))
 const MusicList = loadable(() => import('../pages/music-list'))
 const ProjectAdd = loadable(() => import('../pages/project-add'))
 const Projects = loadable(() => import('../pages/projects'))
@@ -59,10 +58,6 @@ export const routes = [
       {
         path: '/message',
         component: MessageList
-      },
-      {
-        path: '/music-add',
-        component: MusicAdd
       },
       {
         path: '/music',
