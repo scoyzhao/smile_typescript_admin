@@ -12,6 +12,10 @@ export const getCommiteInfo = (params = {}) => http.post('admin/commite/getCommi
 export const addCommite = (params = {}) => http.post('admin/commite/addCommite', { ...params })
 export const deleteCommite = (params = {}) => http.post('admin/commite/deleteCommite', { ...params })
 export const editCommite = (params = {}) => http.post('admin/commite/editCommite', { ...params })
+// * 社区人员管理
+export const getCommiteUserList = (params = {}) => http.post('admin/user/getCommiteUserList', { ...params })
+export const editUser = (params = {}) => http.post('admin/user/editUser', { ...params })
+export const modifyPassword = (params = {}) => http.post('admin/user/modifyPassword', { ...params })
 
 // 获取文章列表
 export const getArts = (params = {}) => http.get('article/get', { params })

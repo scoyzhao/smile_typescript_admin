@@ -29,6 +29,12 @@ export const menuConfig:menuType[] = [
     path: '/commite-manage',
   },
   {
+    title: '用户管理',
+    key: 'user-manage',
+    icon: HomeOutlined,
+    path: '/user-manage',
+  },
+  {
     title: '文章管理',
     key: 'article',
     icon: EditOutlined,
