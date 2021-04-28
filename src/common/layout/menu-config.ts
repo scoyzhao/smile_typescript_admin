@@ -35,6 +35,12 @@ export const menuConfig:menuType[] = [
     path: '/user-manage',
   },
   {
+    title: '工作人员管理',
+    key: 'worker-manage',
+    icon: HomeOutlined,
+    path: '/worker-manage',
+  },
+  {
     title: '文章管理',
     key: 'article',
     icon: EditOutlined,
