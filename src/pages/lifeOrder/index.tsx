@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { Card, Table, message } from 'antd';
+import { Card, Table, Switch, message } from 'antd';
 import './index.scss'
 import PageLayout from '../../common/components/page-layout'
-import { getLifeOrderList } from '../../utils/api'
-import { getUserInfo } from '../../utils';
+import { getLifeOrderList, editLifeOrder } from '../../utils/api'
 
 const Index: React.FC = () => {
   const [lifeOrderList, setLifeOrderList] = useState([])
   const [loading, setLoading] = useState(false)
-
-  const { type } = getUserInfo()
+  const [isEdit, setIsEdit] = useState(false)
 
   useEffect(() => {
     async function queryOrderList() {
@@ -29,7 +27,28 @@ const Index: React.FC = () => {
     }
 
     queryOrderList()
-  }, [type])
+  }, [isEdit])
+
+  const handleStatusChange = async (checked: boolean, record: any) => {
+    try {
+      setIsEdit(true)
+      const status = checked ? 2 : 0
+      const res = await editLifeOrder({
+        editOrder: Object.assign(record, {
+          status,
+        })
+      })
+
+      const { code, message: msg } = res.data
+      setIsEdit(false)
+      if (code !== 200) {
+        message.error(msg)
+      }
+    } catch (error) {
+      setIsEdit(false)
+      message.error(error.toString())
+    }
+  }
 
   const columns = [
     {
@@ -56,16 +75,36 @@ const Index: React.FC = () => {
       dataIndex: 'description',
     },
     {
-      title: '状态',
-      dataIndex: 'status',
-      render: (status: string | number): string => {
-        const status2Name: any = {
-          0: '未完成',
-          1: '待确认',
-          2: '已完成',
-        };
+      // title: '状态',
+      // dataIndex: 'status',
+      // render: (status: string | number): string => {
+      //   const status2Name: any = {
+      //     0: '未完成',
+      //     // 1: '待确认',
+      //     2: '已完成',
+      //   };
 
-        return status2Name[status]
+      //   return status2Name[status]
+      // }
+      title: '状态',
+      // dataIndex: 'status',
+      // render: (status: string | number): string => {
+      //   const status2Name: any = {
+      //     1: '待处理',
+      //     2: '已完成',
+      //   };
+
+      //   return status2Name[status]
+      // }
+      render: (record: any) => {
+        return (
+          <Switch
+            checkedChildren="已完成"
+            unCheckedChildren="未完成"
+            checked={record.status === 2}
+            onChange={(checked) => handleStatusChange(checked, record)}
+          />
+        )
       }
     },
   ];

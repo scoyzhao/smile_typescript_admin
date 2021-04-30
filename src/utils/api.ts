@@ -27,7 +27,9 @@ export const deleteGood = (params = {}) => http.post('admin/goods/deleteGood', {
 export const editGood = (params = {}) => http.post('admin/goods/editGood', { ...params })
 // * 订单相关
 export const getMealOrderList = (params = {}) => http.post('admin/mealOrder/getOrderList', { ...params })
+export const editMealOrder = (params = {}) => http.post('admin/mealOrder/editOrder', { ...params })
 export const getLifeOrderList = (params = {}) => http.post('admin/lifeOrder/getOrderList', { ...params })
+export const editLifeOrder = (params = {}) => http.post('admin/lifeOrder/editOrder', { ...params })
 
 // 获取文章列表
 export const getArts = (params = {}) => http.get('article/get', { params })

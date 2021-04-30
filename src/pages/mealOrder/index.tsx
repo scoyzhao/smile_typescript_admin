@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { Card, Table, message } from 'antd';
+import { Card, Table, Switch, message } from 'antd';
 import './index.scss'
 import PageLayout from '../../common/components/page-layout'
-import { getMealOrderList } from '../../utils/api'
+import { getMealOrderList, editMealOrder } from '../../utils/api'
 import { getUserInfo } from '../../utils';
 
 const Index: React.FC = () => {
   const [lifeOrderList, setLifeOrderList] = useState([])
+  const [ isEdit, setIsEdit ] = useState(false)
   const [loading, setLoading] = useState(false)
 
   const { commiteId } = getUserInfo()
@@ -29,7 +30,28 @@ const Index: React.FC = () => {
     }
 
     queryOrderList()
-  }, [commiteId])
+  }, [commiteId, isEdit])
+
+  const handleStatusChange = async (checked: boolean, record: any) => {
+    try {
+      setIsEdit(true)
+      const status = checked? 2: 1
+      const res = await editMealOrder({
+        editOrder: Object.assign(record, {
+          status,
+        })
+      })
+
+      const { code, message: msg } = res.data
+      setIsEdit(false)
+      if (code !== 200) {
+        message.error(msg)
+      }
+    } catch(error) {
+      setIsEdit(false)
+      message.error(error.toString())
+    }
+  }
 
   const columns = [
     {
@@ -54,15 +76,29 @@ const Index: React.FC = () => {
       }
     },
     {
+      title: '价格',
+      dataIndex: 'price',
+    },
+    {
       title: '状态',
-      dataIndex: 'status',
-      render: (status: string | number): string => {
-        const status2Name: any = {
-          1: '待处理',
-          2: '已完成',
-        };
+      // dataIndex: 'status',
+      // render: (status: string | number): string => {
+      //   const status2Name: any = {
+      //     1: '待处理',
+      //     2: '已完成',
+      //   };
 
-        return status2Name[status]
+      //   return status2Name[status]
+      // }
+      render: (record: any) => {
+        return (
+          <Switch
+            checkedChildren="已完成"
+            unCheckedChildren="待处理"
+            checked={record.status === 2}
+            onChange={(checked) => handleStatusChange(checked, record)}
+          />
+        )
       }
     },
   ];
