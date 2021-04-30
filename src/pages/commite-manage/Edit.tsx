@@ -35,8 +35,8 @@ const Edit: React.FC<editProps> = ({ isShow, data, handleCancel, type }) => {
     try {
       setLoading(true)
       const values = await form.validateFields()
-      const newId = id ? id : Math.floor(Math.random() * 10000 + 5)
-      const res = id ? await editCommite({
+      const newId = id !== undefined? id : Math.floor(Math.random() * 10000 + 5)
+      const res = id !== undefined? await editCommite({
         editCommit: {
           name: values.name, id: newId,
         },
@@ -62,7 +62,7 @@ const Edit: React.FC<editProps> = ({ isShow, data, handleCancel, type }) => {
 
   return (
     <Modal
-      title={id ? '编辑社区' : '新增社区'}
+      title={id !== undefined? '编辑社区' : '新增社区'}
       confirmLoading={loading}
       visible={isShow}
       onCancel={handleCancel}

@@ -29,13 +29,14 @@ const Edit: React.FC<editProps> = ({ isShow, data, handleCancel }) => {
   const [loading, setLoading] = useState(false)
   const [form] = Form.useForm()
   const { id, name, description, type } = data
+  console.log("🚀 ~ file: Edit.tsx ~ line 32 ~ id", id)
 
   const handleSubmit = async () => {
     try {
       setLoading(true)
       const values = await form.validateFields()
-      const newId = id ? id : Math.floor(Math.random() * 10000 + 5)
-      const res = id ? await editWorker({
+      const newId = id !== undefined ? id : Math.floor(Math.random() * 10000 + 5)
+      const res = id !== undefined ? await editWorker({
         editWorker: {
           name: values.name,
           id: newId,
@@ -69,7 +70,7 @@ const Edit: React.FC<editProps> = ({ isShow, data, handleCancel }) => {
 
   return (
     <Modal
-      title={id ? '编辑工作人员' : '新增工作人员'}
+      title={id !== undefined? '编辑工作人员' : '新增工作人员'}
       confirmLoading={loading}
       visible={isShow}
       onCancel={handleCancel}

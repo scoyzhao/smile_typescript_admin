@@ -34,8 +34,8 @@ const Edit: React.FC<editProps> = ({ isShow, data, handleCancel }) => {
     try {
       setLoading(true)
       const values = await form.validateFields()
-      const newId = ID ? ID : Math.floor(Math.random() * 10000 + 5)
-      const res = ID ? await editGood({
+      const newId = ID !== undefined ? ID : Math.floor(Math.random() * 10000 + 5)
+      const res = ID !== undefined ? await editGood({
         editGood: Object.assign(data, {
           ORI_PRICE: values.ORI_PRICE,
         }),
@@ -66,7 +66,7 @@ const Edit: React.FC<editProps> = ({ isShow, data, handleCancel }) => {
 
   return (
     <Modal
-      title={ID ? '编辑商品价格' : '新增工作人员'}
+      title={ID !== undefined ? '编辑商品价格' : '新增工作人员'}
       confirmLoading={loading}
       visible={isShow}
       onCancel={handleCancel}
