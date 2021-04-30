@@ -1,7 +1,7 @@
 /* eslint-disable no-template-curly-in-string */
 import React, { useState } from 'react'
 import { Modal, Form, Input, Radio, message } from 'antd'
-import { addWorker, editWorker } from '../../utils/api'
+import { addWorker, editGood } from '../../utils/api'
 
 type editProps = {
   isShow: boolean
@@ -28,20 +28,17 @@ const validateMessages = {
 const Edit: React.FC<editProps> = ({ isShow, data, handleCancel }) => {
   const [loading, setLoading] = useState(false)
   const [form] = Form.useForm()
-  const { id, name, description, type } = data
+  const { ID, ORI_PRICE } = data
 
   const handleSubmit = async () => {
     try {
       setLoading(true)
       const values = await form.validateFields()
-      const newId = id ? id : Math.floor(Math.random() * 10000 + 5)
-      const res = id ? await editWorker({
-        editWorker: {
-          name: values.name,
-          id: newId,
-          type: values.type,
-          description: values.description,
-        },
+      const newId = ID ? ID : Math.floor(Math.random() * 10000 + 5)
+      const res = ID ? await editGood({
+        editGood: Object.assign(data, {
+          ORI_PRICE: values.ORI_PRICE,
+        }),
       }) :
         await addWorker({
           name: values.name,
@@ -69,7 +66,7 @@ const Edit: React.FC<editProps> = ({ isShow, data, handleCancel }) => {
 
   return (
     <Modal
-      title={id ? '编辑工作人员' : '新增工作人员'}
+      title={ID ? '编辑商品价格' : '新增工作人员'}
       confirmLoading={loading}
       visible={isShow}
       onCancel={handleCancel}
@@ -80,23 +77,10 @@ const Edit: React.FC<editProps> = ({ isShow, data, handleCancel }) => {
         form={form}
         validateMessages={validateMessages}
         initialValues={{
-          name,
-          description,
-          type
+          ORI_PRICE,
         }}
       >
-        <Form.Item name="name" label="姓名" rules={[{ required: true }]}>
-          <Input />
-        </Form.Item>
-        <Form.Item name="type" label="工种" rules={[{ required: true }]}>
-          <Radio.Group>
-            <Radio value={0}>医生</Radio>
-            <Radio value={1}>家政</Radio>
-            <Radio value={4}>家电维修</Radio>
-            <Radio value={2}>其他</Radio>
-          </Radio.Group>
-        </Form.Item>
-        <Form.Item name="description" label="描述" rules={[{ required: true }]}>
+        <Form.Item name="ORI_PRICE" label="商品价格" rules={[{ required: true }]}>
           <Input />
         </Form.Item>
       </Form>
