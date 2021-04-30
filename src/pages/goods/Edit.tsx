@@ -1,6 +1,6 @@
 /* eslint-disable no-template-curly-in-string */
 import React, { useState } from 'react'
-import { Modal, Form, Input, Radio, message } from 'antd'
+import { Modal, Form, Input, message } from 'antd'
 import { addWorker, editGood } from '../../utils/api'
 
 type editProps = {
