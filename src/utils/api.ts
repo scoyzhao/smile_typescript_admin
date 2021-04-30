@@ -21,6 +21,8 @@ export const getWorkerList = (params = {}) => http.get('admin/worker/getWorkerLi
 export const addWorker = (params = {}) => http.post('admin/worker/addWorker', { ...params })
 export const deleteWorker = (params = {}) => http.post('admin/worker/deleteWorker', { ...params })
 export const editWorker = (params = {}) => http.post('admin/worker/editWorker', { ...params })
+// * 商品相关
+export const getGoodsList = (params = {}) => http.get('admin/goods/getGoodsList', { ...params })
 
 // 获取文章列表
 export const getArts = (params = {}) => http.get('article/get', { params })

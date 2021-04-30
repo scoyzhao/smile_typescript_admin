@@ -20,6 +20,7 @@ const Home = loadable(() => import('../pages/home'))
 const CommiteManage = loadable(() => import('../pages/commite-manage'))
 const UserManage = loadable(() => import('../pages/user-manage'))
 const WorkerManage = loadable(() => import('../pages/worker-manage'))
+const Goods = loadable(() => import('../pages/goods'))
 // export interface routeType {
 //   path: string,
 //   component: React.SFC
@@ -45,6 +46,10 @@ export const routes = [
       {
         path: '/worker-manage',
         component: WorkerManage,
+      },
+      {
+        path: '/goods',
+        component: Goods,
       },
       {
         path: '/article',
