@@ -86,7 +86,6 @@ const Home: React.FC = () => {
 
 const Overview = ({ dinnerList, lunchList, userList }: { dinnerList: any[], lunchList: any[], userList: any[] }) => {
   const getUserInfo = (userNumber: string): any => {
-    console.log("🚀 ~ file: index.tsx ~ line 89 ~ getUserInfo ~ userNumber", userNumber)
     return userList.filter(el => el.userNumber === userNumber)
   }
 
@@ -95,6 +94,7 @@ const Overview = ({ dinnerList, lunchList, userList }: { dinnerList: any[], lunc
       title: '姓名',
       render: (record: any) => {
         const user = getUserInfo(record.userNumber)
+        console.log("🚀 ~ file: index.tsx ~ line 98 ~ Overview ~ user", user)
         const { userName } = user[0]
         return userName
       }
@@ -123,6 +123,7 @@ const Overview = ({ dinnerList, lunchList, userList }: { dinnerList: any[], lunc
         <Col span={12}>
           <Card title="今日午餐派送名单">
             <Table
+              rowKey="_id"
               columns={columns}
               dataSource={lunchList}
             />
@@ -131,6 +132,7 @@ const Overview = ({ dinnerList, lunchList, userList }: { dinnerList: any[], lunc
         <Col span={12} >
           <Card title="今日晚餐派送名单">
             <Table
+              rowKey="_id"
               columns={columns}
               dataSource={dinnerList}
             />

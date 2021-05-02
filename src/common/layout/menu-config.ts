@@ -47,6 +47,12 @@ export const menuConfig:menuType[] = [
     path: '/goods',
   },
   {
+    title: '菜单管理',
+    key: 'menu',
+    icon: HomeOutlined,
+    path: '/menu-manage',
+  },
+  {
     title: '社区订餐',
     key: 'meal-order',
     icon: HomeOutlined,

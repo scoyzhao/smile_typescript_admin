@@ -31,3 +31,6 @@ export const getMealOrderList = (params = {}) => http.post('admin/mealOrder/getO
 export const editMealOrder = (params = {}) => http.post('admin/mealOrder/editOrder', { ...params })
 export const getLifeOrderList = (params = {}) => http.post('admin/lifeOrder/getOrderList', { ...params })
 export const editLifeOrder = (params = {}) => http.post('admin/lifeOrder/editOrder', { ...params })
+// * 菜单相关
+export const getMenuList = (params = {}) => http.get('admin/menu/getMenuList', { ...params })
+export const editMenu = (params = {}) => http.post('admin/menu/editMenu', { ...params })

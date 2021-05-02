@@ -11,6 +11,7 @@ const WorkerManage = loadable(() => import('../pages/worker-manage'))
 const Goods = loadable(() => import('../pages/goods'))
 const LifeOrder = loadable(() => import('../pages/lifeOrder'))
 const MealOrder = loadable(() => import('../pages/mealOrder'))
+const MenuManage = loadable(() => import('../pages/menu-manage'))
 // export interface routeType {
 //   path: string,
 //   component: React.SFC
@@ -40,6 +41,10 @@ export const routes = [
       {
         path: '/goods',
         component: Goods,
+      },
+      {
+        path: '/menu-manage',
+        component: MenuManage,
       },
       {
         path: '/life-order',
