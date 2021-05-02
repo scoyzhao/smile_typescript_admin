@@ -6,7 +6,7 @@ export const login = (params = {}) => http.post('admin/user/login', { ...params 
 // * 获取社区名字
 export const getCommiteNameById = (params = {}) => http.post('admin/commite/getCommiteNameById', { ...params })
 // * 获取当前月订单
-export const getOrderListByCommiteIdAndTime = (params = {}) => http.post('admin/commite/getOrderListByCommiteIdAndTime', { ...params })
+export const getOrderListByCommiteIdAndTime = (params = {}) => http.post('admin/mealOrder/getOrderListByCommiteIdAndTime', { ...params })
 // * 获取社区列表
 export const getCommiteInfo = (params = {}) => http.post('admin/commite/getCommiteInfo', { ...params })
 // * 社区操作
