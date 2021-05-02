@@ -86,6 +86,10 @@ const Index: React.FC = () => {
       dataIndex: 'description',
     },
     {
+      title: '手机',
+      dataIndex: 'phone',
+    },
+    {
       title: '操作',
       render: (record: any) => (
         <>

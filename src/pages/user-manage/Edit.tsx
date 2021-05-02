@@ -28,7 +28,7 @@ const validateMessages = {
 const Edit: React.FC<editProps> = ({ isShow, data, handleCancel }) => {
   const [loading, setLoading] = useState(false)
   const [form] = Form.useForm()
-  const { userName, phone, userNumber, auditStatus, type, password } = data
+  const { userName, phone, userNumber, auditStatus, type, password, address, _id } = data
 
   const handleSubmit = async () => {
     try {
@@ -42,6 +42,8 @@ const Edit: React.FC<editProps> = ({ isShow, data, handleCancel }) => {
           auditStatus: values.auditStatus,
           type: values.type,
           password: password,
+          address: values.address,
+          _id,
         },
       })
 
@@ -79,6 +81,7 @@ const Edit: React.FC<editProps> = ({ isShow, data, handleCancel }) => {
           userNumber,
           auditStatus,
           type,
+          address,
         }}
       >
         <Form.Item name="userName" label="用户名" rules={[{ required: true }]}>
@@ -88,6 +91,9 @@ const Edit: React.FC<editProps> = ({ isShow, data, handleCancel }) => {
           <Input />
         </Form.Item>
         <Form.Item name="userNumber" label="身份证" rules={[{ required: true }]}>
+          <Input />
+        </Form.Item>
+        <Form.Item name="address" label="详细地址" rules={[{ required: true }]}>
           <Input />
         </Form.Item>
         <Form.Item name="auditStatus" label="审核状态" rules={[{ required: true }]}>

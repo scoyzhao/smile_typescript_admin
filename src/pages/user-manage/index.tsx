@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Card, Table, Button, Popconfirm, message } from 'antd';
+import { Card, Table, Button, message } from 'antd';
 import './index.scss'
 import PageLayout from '../../common/components/page-layout'
 import { getCommiteUserList } from '../../utils/api'
@@ -88,6 +88,10 @@ const Index: React.FC = () => {
           <span>普通用户</span>
         )
       },
+    },
+    {
+      title: '地址',
+      dataIndex: 'address',
     },
     {
       title: '操作',

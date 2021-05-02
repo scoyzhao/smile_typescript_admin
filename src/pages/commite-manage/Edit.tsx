@@ -1,6 +1,6 @@
 /* eslint-disable no-template-curly-in-string */
-import React, { useState, useEffect } from 'react'
-import { Modal, Table, Form, Input, message } from 'antd'
+import React, { useState } from 'react'
+import { Modal, Form, Input, message } from 'antd'
 import { addCommite, editCommite } from '../../utils/api'
 
 type editProps = {
@@ -29,7 +29,7 @@ const validateMessages = {
 const Edit: React.FC<editProps> = ({ isShow, data, handleCancel, type }) => {
   const [loading, setLoading] = useState(false)
   const [form] = Form.useForm()
-  const { id, name } = data
+  const { id, name, address } = data
 
   const handleSubmit = async () => {
     try {
@@ -39,10 +39,11 @@ const Edit: React.FC<editProps> = ({ isShow, data, handleCancel, type }) => {
       const res = id !== undefined? await editCommite({
         editCommit: {
           name: values.name, id: newId,
+          address: values.address,
         },
         type,
       }) :
-        await addCommite({ name: values.name, id: newId, type })
+        await addCommite({ name: values.name, id: newId, type, address: values.address })
 
       setLoading(false)
       const {
@@ -74,9 +75,13 @@ const Edit: React.FC<editProps> = ({ isShow, data, handleCancel, type }) => {
         validateMessages={validateMessages}
         initialValues={{
           name,
+          address,
         }}
       >
         <Form.Item name="name" label="name" rules={[{ required: true }]}>
+          <Input />
+        </Form.Item>
+        <Form.Item name="address" label="address" rules={[{ required: true }]}>
           <Input />
         </Form.Item>
       </Form>

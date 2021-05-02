@@ -28,8 +28,7 @@ const validateMessages = {
 const Edit: React.FC<editProps> = ({ isShow, data, handleCancel }) => {
   const [loading, setLoading] = useState(false)
   const [form] = Form.useForm()
-  const { id, name, description, type } = data
-  console.log("🚀 ~ file: Edit.tsx ~ line 32 ~ id", id)
+  const { id, name, description, type, phone } = data
 
   const handleSubmit = async () => {
     try {
@@ -42,6 +41,7 @@ const Edit: React.FC<editProps> = ({ isShow, data, handleCancel }) => {
           id: newId,
           type: values.type,
           description: values.description,
+          phone: values.phone,
         },
       }) :
         await addWorker({
@@ -49,6 +49,7 @@ const Edit: React.FC<editProps> = ({ isShow, data, handleCancel }) => {
           id: newId,
           type: values.type,
           description: values.description,
+          phone: values.phone,
         })
 
       setLoading(false)
@@ -64,6 +65,7 @@ const Edit: React.FC<editProps> = ({ isShow, data, handleCancel }) => {
       message.success('操作成功')
       return handleCancel()
     } catch (errorInfo) {
+      setLoading(false)
       console.log('Failed:', errorInfo)
     }
   }
@@ -83,10 +85,14 @@ const Edit: React.FC<editProps> = ({ isShow, data, handleCancel }) => {
         initialValues={{
           name,
           description,
-          type
+          type,
+          phone,
         }}
       >
         <Form.Item name="name" label="姓名" rules={[{ required: true }]}>
+          <Input />
+        </Form.Item>
+        <Form.Item name="phone" label="手机" rules={[{ required: true }]}>
           <Input />
         </Form.Item>
         <Form.Item name="type" label="工种" rules={[{ required: true }]}>

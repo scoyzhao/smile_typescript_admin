@@ -2,23 +2,25 @@ import React, { useState, useEffect } from 'react'
 import { Card, Col, Row, message } from 'antd';
 import './index.scss'
 import PageLayout from '../../common/components/page-layout'
-import { getCommiteNameById } from '../../utils/api'
+import { getCommiteNameById, getOrderListByCommiteIdAndTime } from '../../utils/api'
 import { getUserInfo } from '../../utils/public'
 
 const Home: React.FC = () => {
   const [name, setName] = useState('')
   const { commiteId, userName: admin } = getUserInfo()
 
+
   useEffect(() => {
     async function getCommiteName() {
       const res: any = await getCommiteNameById({ id: commiteId })
       const {
         code,
-        message: msg,
+        // message: msg,
         data,
       } = res.data
       if (code !== 200) {
-        return message.error(msg)
+        // return message.error(msg)
+        return false;
       }
 
       setName(data)
@@ -26,6 +28,17 @@ const Home: React.FC = () => {
 
     getCommiteName()
   })
+
+  const nowDate = () => {
+    var nowDate = new Date();
+    var date = {
+      year: nowDate.getFullYear(),
+      month: nowDate.getMonth() + 2,
+    };
+    var systemDate =
+      date.year + "-" + (date.month >= 10 ? date.month : "0" + date.month)
+    return systemDate;
+  }
 
   return (
     <PageLayout title={`你好！${name}社区的 ${admin}`}>
